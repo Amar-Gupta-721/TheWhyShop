@@ -14,7 +14,7 @@ const ProductCard = ({ name, image, price, buyLink, reviewLink, category }: Prod
   return (
     <div className="group glass-card-hover rounded-2xl overflow-hidden cursor-pointer">
       {/* Image container */}
-      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-secondary to-muted">
+      <div className="relative aspect-square overflow-hidden bg-white from-secondary to-muted p-8">
         <img
           src={image}
           alt={name}
