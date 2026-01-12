@@ -86,6 +86,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/45NrtMW',
     reviewLink: '#',
+    reviewed: true,
   },
   {
     id: '2',
@@ -95,6 +96,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/4b0obK1',
     reviewLink: '#',
+    reviewed: true,
   },
   {
     id: '3',
@@ -104,6 +106,7 @@ const products = [
     category: 'Audio',
     buyLink: 'https://amzn.to/4aUzNxX',
     reviewLink: '#',
+    reviewed: true,
   },
   {
     id: '4',
@@ -113,6 +116,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/4btpcKC',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '5',
@@ -122,6 +126,7 @@ const products = [
     category: 'Furniture',
     buyLink: 'https://amzn.to/3NEkobm',
     reviewLink: '#',
+    reviewed: false
   },
   {
     id: '6',
@@ -131,6 +136,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/4qgQGaP',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '7',
@@ -140,6 +146,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/3LaakX1',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '8',
@@ -149,6 +156,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/4pDLYD8',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '9',
@@ -158,6 +166,7 @@ const products = [
     category: 'Toys',
     buyLink: 'https://amzn.to/49Ngx4q',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '10',
@@ -167,6 +176,7 @@ const products = [
     category: 'Bags',
     buyLink: 'https://amzn.to/45PUZBN',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '11',
@@ -176,6 +186,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/49yt6ze',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '12',
@@ -185,6 +196,7 @@ const products = [
     category: 'Electronics',
     buyLink: 'https://amzn.to/3LaVD65',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '13',
@@ -194,6 +206,7 @@ const products = [
     category: 'Bags',
     buyLink: 'https://amzn.to/4sBTUr2',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '14',
@@ -203,6 +216,7 @@ const products = [
     category: 'Accessories',
     buyLink: 'https://amzn.to/4jyp2nb',
     reviewLink: '#',
+    reviewed: false,
   },
   {
     id: '15',
@@ -212,6 +226,7 @@ const products = [
     category: 'Wearables',
     buyLink: 'https://amzn.to/3YDNHx8',
     reviewLink: '#',
+    reviewed: false,
   },
 ];
 

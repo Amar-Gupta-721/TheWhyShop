@@ -8,9 +8,12 @@ interface ProductCardProps {
   buyLink: string;
   reviewLink: string;
   category?: string;
+  reviewed?: string | boolean;
 }
 
-const ProductCard = ({ name, image, price, buyLink, reviewLink, category }: ProductCardProps) => {
+const ProductCard = ({ name, image, price, buyLink, reviewLink, category, reviewed  }: ProductCardProps) => {
+  const isReviewed = reviewed === 'yes' || reviewed === true;
+
   return (
     <div className="group glass-card-hover rounded-2xl overflow-hidden cursor-pointer">
       {/* Image container */}
@@ -33,7 +36,7 @@ const ProductCard = ({ name, image, price, buyLink, reviewLink, category }: Prod
         
         {/* Quick action buttons on hover */}
         <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-          <a
+          {/* <a
             href={reviewLink}
             target="_blank"
             rel="noopener noreferrer"
@@ -42,7 +45,21 @@ const ProductCard = ({ name, image, price, buyLink, reviewLink, category }: Prod
           >
             <Play className="w-4 h-4" />
             Review
-          </a>
+          </a> */}
+          
+          {isReviewed && (
+            <a
+              href={reviewLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-white/95 backdrop-blur-sm text-foreground text-sm font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Play className="w-4 h-4" />
+              Review
+            </a>
+          )}
+
           <a
             href={buyLink}
             target="_blank"
