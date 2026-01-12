@@ -64,8 +64,6 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border/30 text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} TheWhyShop. All rights reserved. 
-            <span className="mx-2">•</span>
-            Made with ❤️ for tech enthusiasts
           </p>
         </div>
       </div>
