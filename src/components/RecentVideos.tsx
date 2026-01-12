@@ -131,41 +131,107 @@ const RecentVideos = () => {
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_YT_API_KEY;
 
+    // const fetchVideos = async () => {
+    //   try {
+    //     // Get Channel ID from handle
+    //     const channelRes = await fetch(
+    //       `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${CHANNEL_HANDLE}&key=${API_KEY}`
+    //     );
+
+    //     const channelData = await channelRes.json();
+    //     const channelId = channelData.items?.[0]?.id;
+    //     if (!channelId) return;
+
+    //     // Fetch latest uploads
+    //     const res = await fetch(
+    //       `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=8`
+    //     );
+
+    //     const data = await res.json();
+
+    //     const formatted = data.items
+    //       .filter((v: any) => v.id.videoId) // avoid non video items
+    //       .map((v: any) => ({
+    //         id: v.id.videoId,
+    //         title: v.snippet.title,
+    //         thumbnail: v.snippet.thumbnails.high.url,
+    //         publishedAt: new Date(v.snippet.publishedAt).toDateString(),
+    //         videoUrl: `https://www.youtube.com/watch?v=${v.id.videoId}`,
+    //         views: "—",        // optional (API requires extra call)
+    //         duration: "—",     // optional
+    //       }));
+
+    //     setVideos(formatted);
+    //   } catch (error) {
+    //     console.error("Failed to load videos", error);
+    //   }
+    // };
+
     const fetchVideos = async () => {
-      try {
-        // Get Channel ID from handle
-        const channelRes = await fetch(
-          `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${CHANNEL_HANDLE}&key=${API_KEY}`
-        );
+  try {
+    const API_KEY = import.meta.env.VITE_YT_API_KEY;
 
-        const channelData = await channelRes.json();
-        const channelId = channelData.items?.[0]?.id;
-        if (!channelId) return;
+    // 1️⃣ Get Channel ID
+    const channelRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=@TheWhy.Guy_&key=${API_KEY}`
+    );
+    const channelData = await channelRes.json();
+    const channelId = channelData.items?.[0]?.id;
+    if (!channelId) return;
 
-        // Fetch latest uploads
-        const res = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=8`
-        );
+    // 2️⃣ Get recent uploads
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=8`
+    );
+    const data = await res.json();
 
-        const data = await res.json();
+    const videoItems = data.items.filter((v: any) => v.id.videoId);
+    const videoIds = videoItems.map((v: any) => v.id.videoId).join(",");
 
-        const formatted = data.items
-          .filter((v: any) => v.id.videoId) // avoid non video items
-          .map((v: any) => ({
-            id: v.id.videoId,
-            title: v.snippet.title,
-            thumbnail: v.snippet.thumbnails.high.url,
-            publishedAt: new Date(v.snippet.publishedAt).toDateString(),
-            videoUrl: `https://www.youtube.com/watch?v=${v.id.videoId}`,
-            views: "—",        // optional (API requires extra call)
-            duration: "—",     // optional
-          }));
+    // 3️⃣ Fetch Video Stats + Duration
+    const statsRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds}&key=${API_KEY}`
+    );
+    const statsData = await statsRes.json();
 
-        setVideos(formatted);
-      } catch (error) {
-        console.error("Failed to load videos", error);
-      }
+    const formatDuration = (iso: string) => {
+      const match = iso.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+      const h = (match?.[1] || "").replace("H", "") || "";
+      const m = (match?.[2] || "").replace("M", "") || "0";
+      const s = (match?.[3] || "").replace("S", "") || "0";
+
+      return h
+        ? `${h}:${m.padStart(2, "0")}:${s.padStart(2, "0")}`
+        : `${m}:${s.padStart(2, "0")}`;
     };
+
+    const formatViews = (num: string) => {
+      const n = Number(num);
+      if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M views";
+      if (n >= 1_000) return (n / 1_000).toFixed(1) + "K views";
+      return n + " views";
+    };
+
+    const formatted = videoItems.map((v: any) => {
+      const stats = statsData.items.find((i: any) => i.id === v.id.videoId);
+
+      return {
+        id: v.id.videoId,
+        title: v.snippet.title,
+        thumbnail: v.snippet.thumbnails.high.url,
+        publishedAt: new Date(v.snippet.publishedAt).toDateString(),
+        videoUrl: `https://www.youtube.com/watch?v=${v.id.videoId}`,
+        views: formatViews(stats?.statistics?.viewCount || "0"),
+        duration: formatDuration(stats?.contentDetails?.duration || "PT0M0S"),
+      };
+    });
+
+    setVideos(formatted);
+  } catch (error) {
+    console.error("Failed to load videos", error);
+  }
+};
+
 
     fetchVideos();
     const interval = setInterval(fetchVideos, 20000);
