@@ -85,7 +85,7 @@ const Hero = () => {
             </a>
             <a href="#videos" className="btn-secondary inline-flex items-center gap-2 text-sm px-5 py-2.5">
               <Play className="w-4 h-4" />
-              Watch Reviews
+              Watch Videos
             </a>
           </div>
         </div>
