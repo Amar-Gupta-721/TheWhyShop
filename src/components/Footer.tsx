@@ -1,4 +1,4 @@
-import { ShoppingBag, Youtube, Twitter, Instagram, Mail } from 'lucide-react';
+import { ShoppingBag, Youtube, Twitter, Instagram, Mail, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -21,14 +21,14 @@ const Footer = () => {
             <a href="#products" className="hover:text-primary transition-colors">Products</a>
             <a href="#videos" className="hover:text-primary transition-colors">Videos</a>
             <a href="#" className="hover:text-primary transition-colors">About</a>
-            {/* <a href="#" className="hover:text-primary transition-colors">Contact</a> */}
+            <a href="mailto:connectwith.theguy@gmail.com" className="hover:text-primary transition-colors">Contact</a>
             {/* <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a> */}
           </nav>
 
           {/* Social links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://youtube.com"
+              href=" https://www.youtube.com/@TheWhy.Guy_"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-[#FF0000] hover:scale-110 transition-all"
@@ -36,7 +36,7 @@ const Footer = () => {
               <Youtube className="w-5 h-5" />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://x.com/theWhyGuy__"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-[#1DA1F2] hover:scale-110 transition-all"
@@ -44,7 +44,7 @@ const Footer = () => {
               <Twitter className="w-5 h-5" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/thewhy.guy_/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-[#E4405F] hover:scale-110 transition-all"
@@ -52,10 +52,17 @@ const Footer = () => {
               <Instagram className="w-5 h-5" />
             </a>
             <a
-              href="mailto:hello@thewhyshop.com"
+              href="mailto:connectwith.theguy@gmail.com"
               className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:scale-110 transition-all"
             >
               <Mail className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/kshitiz-verma-308794233/"
+              target="_blank"
+              className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:scale-110 transition-all"
+            >
+              <Linkedin className="w-5 h-5" />
             </a>
           </div>
         </div>

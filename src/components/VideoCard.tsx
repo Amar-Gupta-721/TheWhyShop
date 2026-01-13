@@ -6,11 +6,11 @@ interface VideoCardProps {
   thumbnail: string;
   views: string;
   duration: string;
-  publishedAt: string;
+  // publishedAt: string;
   videoUrl: string;
 }
 
-const VideoCard = ({ title, thumbnail, views, duration, publishedAt, videoUrl }: VideoCardProps) => {
+const VideoCard = ({ title, thumbnail, views, duration, videoUrl }: VideoCardProps) => {
   return (
     <a
       href={videoUrl}
@@ -50,7 +50,7 @@ const VideoCard = ({ title, thumbnail, views, duration, publishedAt, videoUrl }:
             <Eye className="w-4 h-4" />
             {views}
           </span>
-          <span>{publishedAt}</span>
+          {/* <span>{publishedAt}</span> */}
         </div>
       </div>
     </a>

@@ -219,7 +219,7 @@ const RecentVideos = () => {
         id: v.id.videoId,
         title: v.snippet.title,
         thumbnail: v.snippet.thumbnails.high.url,
-        publishedAt: new Date(v.snippet.publishedAt).toDateString(),
+        // publishedAt: new Date(v.snippet.publishedAt).toDateString(),
         videoUrl: `https://www.youtube.com/watch?v=${v.id.videoId}`,
         views: formatViews(stats?.statistics?.viewCount || "0"),
         duration: formatDuration(stats?.contentDetails?.duration || "PT0M0S"),
